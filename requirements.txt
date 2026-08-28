@@ -1,0 +1,28 @@
+# Core
+numpy
+pandas
+scikit-learn
+xgboost
+
+# Deep learning / transformers
+torch
+torchvision
+transformers
+
+# Video / image processing
+opencv-python
+
+# Audio processing
+librosa
+
+# YouTube data collection
+yt-dlp
+google-api-python-client      # googleapiclient (YouTube Data API v3)
+google-generativeai           # Gemini API for auto-labelling
+
+# Visualization
+matplotlib
+
+# Notebook environment
+jupyter
+ipykernel

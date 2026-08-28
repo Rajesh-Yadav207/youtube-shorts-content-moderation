@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data / large artifacts (not published — see README > Data Availability)
+data/
+*.csv
+*.mp4
+*.mp3
+*.wav
+*.npy
+*.npz
+*.pkl
+
+# Credentials — never commit these
+.env
+*.key
+client_secret*.json
+token.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
