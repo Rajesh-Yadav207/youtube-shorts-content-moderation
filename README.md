@@ -11,7 +11,7 @@ feature extraction, to a systematic benchmark of classical ML models across two 
 
 
 
-\## ⚖️ Credits \& Legal Considerations
+##⚖️ Credits & Legal Considerations
 
 
 
