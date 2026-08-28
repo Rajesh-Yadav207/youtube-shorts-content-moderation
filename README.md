@@ -35,20 +35,20 @@ See [`docs/RESULTS_EXPLAINED.md`](docs/RESULTS_EXPLAINED.md) for the full breakd
 ## 🧩 Pipeline Overview
 
 ```
-YouTube Shorts URLs (seed CSV, 440 videos)
+YouTube Shorts URLs (seed CSV)
         │
         ▼
  yt-dlp download  ──────────────►  labelling (5 classes)
         │                                   │
         ▼                                   ▼
- ┌─────────────┐   ┌───────────────┐   ┌────────────┐   ┌──────────────────┐
- │ Video frames│   │ Audio (mp4→mp3)│  │  Title      │   │ Comments (YouTube│
- │             │   │                │   │             │   │ Data API v3)     │
- └──────┬──────┘   └───────┬────────┘   └──────┬──────┘   └────────┬─────────┘
-        │                  │                    │                   │
- VideoMAE (768) +   librosa: MFCC, chroma,   BERT \\\\\\\[CLS]         BERT \\\\\\\[CLS]
- ResNet50 (2048) +  spectral\\\\\\\*, tonnetz,      embedding (768)    avg-pooled
- Optical Flow (120) tempo, RMS (139)                            embedding (768)
+ ┌─────────────┐     ┌───────────────┐   ┌────────────┐   ┌──────────────────┐
+ │ Video frames│     │ Audio (mp4→mp3)│  │  Title     │   │ Comments (YouTube│
+ │             │     │                │  │            │   │ Data API v3)     │
+ └──────┬──────┘     └───────┬────────┘  └──────┬─────┘   └────────┬─────────┘
+        │                  │                  │                  │
+ VideoMAE (768) +    librosa:MFCC, chroma,   BERT[CLS]         BERT[CLS]
+ ResNet50 (2048) +   spectral, tonnetz,      embedding (768)    avg-pooled
+ Optical Flow (120)  tempo, RMS (139)                           embedding (768)
         │                  │                    │                   │
         └──────────────────┴────────────────────┴───────────────────┘
                                    │
@@ -60,8 +60,8 @@ YouTube Shorts URLs (seed CSV, 440 videos)
        AdaBoost, Gradient Boosting, XGBoost, SVM, Neural Network/MLP)
                                    │
                                    ▼
-                    Evaluation: Accuracy / Precision / Recall / F1
-                 (single 80/20 stratified split + 5-fold stratified CV)
+             Evaluation: Accuracy / Precision / Recall / F1
+         (single 80/20 stratified split + 5-fold stratified CV)
 ```
 
 
@@ -71,7 +71,7 @@ YouTube Shorts URLs (seed CSV, 440 videos)
 
 * **661** labelled YouTube Shorts samples across 5 classes (Explicit, Normal, Hateful, Toxic, Violence — roughly balanced, ~130 per class).
 * Labels were generated automatically using the **Gemini 2.5 Flash** model (multimodal: visual frames + audio cues + text), then used as ground truth.
-* Comments extracted via **YouTube Data API v3** (up to 100 top-level comments/video; 18,537 comments across 324 videos).
+* Comments extracted via **YouTube Data API v3** (up to 100 top-level comments/video; 18,537 comments across all videos).
 
 **Final feature vector (4,611 dims):**
 
